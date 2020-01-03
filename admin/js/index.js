@@ -34,7 +34,7 @@ $(function () {
             $('.slideMenu b').toggleClass('rotate');
             // 取消一级菜单的高亮
             $('.level01').removeClass('active');
-            // 主动触发第一个li元素的点击事件
+            // 主动触发第一个li元素的点击事件*
             $('.level02>li:eq(0)>a')[0].click()
         }
     })

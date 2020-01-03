@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="./js/http.js"></script>
     <script src="./libs/jquery-1.12.4.min.js"></script>
     <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
     <!-- 引入模板引擎js文件 -->
     <script src="./libs/template-web.js"></script>
+
 </head>
 
 <body>
@@ -36,7 +38,7 @@
                         <td>funny</td>
                         <td class="text-center">
                             <a href="javascript:void(0);" data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
-                            <a href="javascript:void(0);" class="btn btn-danger btn-xs">删除</a>
+                            <a href="javascript:void(0);" class="btn btn-danger btn-xs btn-del">删除</a>
                         </td>
                     </tr>
                 </tbody>
@@ -51,5 +53,49 @@
             </table>
         </div>
     </div>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">新增分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">名称:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Slug:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn-send">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id='category' type="text/html">
+    {{ each data v}}
+    <tr>
+        <td class='name'>{{v.name}}</td>
+        <td class='slug'>{{v.slug}}</td>
+        <td class="text-center">
+            <a href="javascript:void(0);" data-id="{{v.id}}" data-toggle="modal" data-target="#myModal" class=" btn btn-info btn-xs btn-edit">编辑</a>
+            <a href="javascript:void(0);" data-id="{{v.id}}" class="btn btn-danger btn-xs btn-del">删除</a>
+        </td>
+    </tr>
+    {{/each}}
+    </script>
+    <script src="./js/article_category.js"></script>
+</body>
 
 </html>

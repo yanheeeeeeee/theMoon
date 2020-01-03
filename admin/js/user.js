@@ -6,10 +6,16 @@ $(function () {
         dataType: 'json',
         data: '',
         success: function (backData) {
-            $('.username').val(backData.data.username)
-            $('.nickname').val(backData.data.nickname)
-            $('.email').val(backData.data.email)
-            $('.password').val(backData.data.password)
+            // $('.username').val(backData.data.username)
+            // $('.nickname').val(backData.data.nickname)
+            // $('.email').val(backData.data.email)
+            // $('.password').val(backData.data.password)
+
+            // 渲染页面的表单元素`类名`与服务器返回的对象`属性名一致`
+            // 就可以写一个for-in循环遍历返回对象的key,并赋值给相应的表单元素
+            for (let key in backData.data) {
+                $('.' + key).val(backData.data[key])
+            }
             $('.user_pic').attr('src', backData.data.userPic)
         }
     });
@@ -40,6 +46,10 @@ $(function () {
             success: function (backData) {
                 if (backData.code == 200) {
                     $('#myModal').modal({ keyboard: true });
+                    // 模态框关闭后重新加载父页面(即index.html)
+                    $('#myModal').on('hidden.bs.modal', function (e) {
+                        window.parent.location.reload;
+                    })
                 }
             }
         });

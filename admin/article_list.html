@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
     <script src="./libs/jquery-1.12.4.min.js"></script>
     <!-- 引入模板引擎js文件 -->
     <script src="./libs/template-web.js"></script>
+    <script src="./js/http.js"></script>
 </head>
 
 <body>
@@ -26,10 +27,6 @@
                     <form class="form-inline">
                         <select id="selCategory" name="" class="form-control input-sm">
                             <option value="">所有分类</option>
-                            <option>未分类</option>
-                            <option>奇趣事</option>
-                            <option>会生活</option>
-                            <option>爱旅行</option>
                         </select>
                         <select id="selStatus" name="" class="form-control input-sm">
                             <option value="">所有状态</option>
@@ -72,6 +69,14 @@
             </div>
         </div>
     </div>
+
+    <script id="category" type="html/text">
+        <option value="">所有分类</option>
+        {{each data v}}
+        <option value="{{v.id}}">{{v.name}}</option>
+        {{/each}}
+    </script>
+    <script src="./js/article_list.js"></script>
 </body>
 
 </html>

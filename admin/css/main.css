@@ -448,3 +448,7 @@ body {
 .menu .level01 .rotate {
     transform: rotate(0deg);
 }
+
+#bottomNav {
+    text-align: center;
+}

@@ -13,6 +13,8 @@
     <script src="./libs/jquery-1.12.4.min.js"></script>
     <!-- 引入模板引擎js文件 -->
     <script src="./libs/template-web.js"></script>
+    <!-- 引入分页插件js文件 -->
+    <script src="./libs/jquery.twbsPagination.js"></script>
     <script src="./js/http.js"></script>
 </head>
 
@@ -65,17 +67,39 @@
                     </tr>
                 </tbody>
             </table>
+            <div id="bottomNav">
+                <ul id="pagination" class="pagination-sm"></ul>
+            </div>
             <div class="row text-center">
             </div>
         </div>
     </div>
 
+    <!-- 下拉框html模板 -->
     <script id="category" type="html/text">
         <option value="">所有分类</option>
         {{each data v}}
         <option value="{{v.id}}">{{v.name}}</option>
         {{/each}}
     </script>
+
+    <!-- 文章列表html模板 -->
+    <script id="article_list" type="html/text">
+        {{each data.data v}}
+        <tr>
+            <td>{{v.title}}</td>
+            <td>{{v.author}}</td>
+            <td>{{v.category}}</td>
+            <td class="text-center">{{v.date}}</td>
+            <td class="text-center">{{v.state}}</td>
+            <td class="text-center">
+                <a href="article_edit.html" data-id="{{v.id}}" class="btn btn-default btn-xs btn-edit">编辑</a>
+                <a href="javascript:void(0);" data-id="{{v.id}}" class="btn btn-danger btn-xs delete btn-del">删除</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+
     <script src="./js/article_list.js"></script>
 </body>
 

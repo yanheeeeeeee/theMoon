@@ -87,7 +87,7 @@ $(function () {
                 data: 'id=' + id,
                 success: function (backData) {
                     // 显示返回消息
-                    alert(backData);
+                    alert(backData.msg);
                     if (backData.code == 204) {
                         // 重新加载tbody里的内容(主动触发筛选事件)
                         $('#btnSearch').click();

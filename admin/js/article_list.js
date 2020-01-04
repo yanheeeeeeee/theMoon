@@ -6,6 +6,7 @@ $(function () {
         dataType: 'json',
         data: '',
         success: function (backData) {
+            // 渲染到下拉框中
             $('#selCategory').html(template("category", backData));
         }
     });
@@ -20,12 +21,18 @@ $(function () {
             perpage: 10
         },
         success: function (backData) {
+            // 渲染到tbody中
             $('tbody').html(template("article_list", backData))
+            // 调用pagination插件的初始化代码,显示分页栏
             $('#pagination').twbsPagination({
+                // 总页数: ajax返回的data.totalPage
                 totalPages: backData.data.totalPage,
-                visiblePages: backData.data.totalPage < 6 ? backData.data.totalPage : 6,
+                // 显示的页数: 此处为6
+                visiblePages: 6,
+                // 页码点击事件 参数e 事件源; page 点击的页码
                 onPageClick: function (e, page) {
                     $('#page-content').text('Page ' + page);
+                    // 调用页码点击函数
                     getArticleList(page)
                 }
             });
@@ -49,27 +56,26 @@ $(function () {
                 perpage: 10
             },
             success: function (backData) {
+                // 渲染到tbody中
                 $('tbody').html(template("article_list", backData))
-
-                // 筛选按钮点击事件(ajax相应后执行)
-                // 销毁旧插件
-                $('#pagination').twbsPagination('destroy');
-                // 生成新插件
+                // 调用pagination插件的初始化代码,显示分页栏
                 $('#pagination').twbsPagination({
-                    visiblePages: backData.data.totalPage < 6 ? backData.data.totalPage : 6,
+                    // 总页数: ajax返回的data.totalPage
                     totalPages: backData.data.totalPage,
-                    startPage: 1,
+                    // 显示的页数: 此处为6
+                    visiblePages: 6,
+                    // 页码点击事件 参数e 事件源; page 点击的页码
                     onPageClick: function (e, page) {
                         $('#page-content').text('Page ' + page);
+                        // 调用页码点击函数
                         getArticleList(page)
                     }
                 });
-
             }
         });
     })
 
-    // 点击页码事件
+    // 点击页码函数
     function getArticleList(currentPage) {
         // ajax请求该页码数据
         $.ajax({
@@ -83,6 +89,7 @@ $(function () {
                 perpage: 10
             },
             success: function (backData) {
+                // 将ajax返回的数据渲染到tbody中
                 $('tbody').html(template("article_list", backData))
             }
         });

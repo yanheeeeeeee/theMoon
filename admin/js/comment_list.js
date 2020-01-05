@@ -1,4 +1,11 @@
 $(function () {
+    // 业务需求:
+    // 1.页面渲染及分页栏功能
+    // 2.批准按钮注册事件
+    // 3.拒绝按钮注册事件
+    // 4.删除按钮注册事件
+    //   2,3,4步可以封装为同一函数传入不同参数
+
     // 页面加载后获取第一页的评论数据并渲染到页面
     getCommentList(1);
 
@@ -29,6 +36,35 @@ $(function () {
                 }
             }
         });
-
     }
+
+    // 评论审核通过
+    $(document).on('click', '.btn-pass', function () {
+        commentManage(BigNew.comment_pass, $(this).attr('data-id'))
+    })
+
+    // 评论审核拒绝
+    $(document).on('click', '.btn-reject', function () {
+        commentManage(BigNew.comment_reject, $(this).attr('data-id'))
+    })
+
+    // 评论删除
+    $(document).on('click', '.btn-del', function () {
+        commentManage(BigNew.comment_delete, $(this).attr('data-id'))
+    })
+
+    // 评论管理函数
+    function commentManage(url, id) {
+        $.ajax({
+            url: url,
+            type: 'post',
+            dataType: 'json',
+            data: 'id=' + id,
+            success: function (backData) {
+                alert(backData.msg);
+                window.location.reload();
+            }
+        });
+    }
+
 })

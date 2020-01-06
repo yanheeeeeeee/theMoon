@@ -31,7 +31,11 @@
         index_article: baseURL + '/index/article', //文章详细内容
         index_get_comment: baseURL + '/index/get_comment', //评论列表
         index_post_comment: baseURL + '/index/post_comment', //发表评论
-        index_search: baseURL + '/index/search'//文章搜索
+        index_search: baseURL + '/index/search',//文章搜索
+        data_info: baseURL + '/admin/data/info', //统计数据
+        data_article: baseURL + '/admin/data/article', //日新增文章数量统计
+        data_category: baseURL + '/admin/data/category', //各类型文章数量统计
+        data_visit: baseURL + '/admin/data/visit', //日文章访问量
 
     }
     // 暴露接口
